@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 dirname = os.path.dirname(__file__)
 
-geclec_t5_path = os.path.join(dirname, config.T5_GEC_LEC)
+geclec_t5_path = os.path.join(dirname, 'models', config.T5_GEC_LEC)
 geclec_t5_tok = AutoTokenizer.from_pretrained(geclec_t5_path)
 geclec_t5_model = AutoModelForSeq2SeqLM.from_pretrained(geclec_t5_path)
 
