@@ -12,7 +12,7 @@ geclec_t5_model = AutoModelForSeq2SeqLM.from_pretrained(geclec_t5_path)
 
 st.title('GEC + LEC')
 
-sent = st.text_area('Input Sentence', "The main objectives of this colleges are to help people learn knowledge, "
+sent = st.text_area('Input Sentence', placeholder="The main objectives of this colleges are to help people learn knowledge, "
                                      "to strengthen their cultural competences, "
                                      "and to participate in the growth of nearby industry.")
 
