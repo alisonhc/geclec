@@ -4,7 +4,7 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import inference
 import config
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 dirname = os.path.dirname(__file__)
 
