@@ -1,4 +1,5 @@
 import os
+from nltk.tokenize import sent_tokenize
 import streamlit as st
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import inference
@@ -17,11 +18,22 @@ value = ""
 if query_params and not value:
     value = query_params['input'][0]
 
-sent = st.text_area('Input Sentence', placeholder="The main objectives of this colleges are to help people learn knowledge, "
+text = st.text_area('Input', placeholder="The main objectives of this colleges are to help people learn knowledge, "
                                                   "to strengthen their cultural competences, "
                                                   "and to participate in the growth of nearby industry.", value=value)
 
-if st.button('Correct Sentence'):
-    res = inference.correct_sent(model=geclec_t5_model, tok=geclec_t5_tok, sent=sent)
-    st.experimental_set_query_params(input=sent)
+
+def sents_inference(txt):
+    sents = sent_tokenize(txt)
+    if len(sents) > 1:
+        return inference.correct_many_sents(model=geclec_t5_model, tok=geclec_t5_tok, sent_list=sents)
+    else:
+        return inference.correct_sent(model=geclec_t5_model, tok=geclec_t5_tok, sent=sents[0])
+
+
+if st.button('Correct This'):
+    res = sents_inference(txt=text)
+    st.experimental_set_query_params(input=text)
     st.write(res)
+
+

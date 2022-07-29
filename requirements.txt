@@ -5,3 +5,4 @@ transformers==4.20.1
 streamlit==1.10.0
 watchdog==2.1.9
 gdown==4.5.1
+nltk==3.7
